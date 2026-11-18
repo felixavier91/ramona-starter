@@ -25,7 +25,7 @@ or one at a time: `check.py battery`, `check.py head`, ...
 | `light` | two voltages that change when you cover a sensor | Stuck values: same I2C causes as `battery`. |
 | `buzzer` | two beeps | Silent: board switch off. |
 | `head` | left, right, centre, nod: slow and smooth | Jerky or buzzing: battery low. Moves the wrong way or off-centre: servo horn mounted off-centre, see below. Nothing: servo plugged into the wrong channel (pan = 0, tilt = 1). |
-| `leds` | red, then green, then blue, then rainbow | "skipped": use `sudo`. Wrong colours or nothing: wrong Connect/PCB version in `params.json` (SETUP step 3). |
+| `leds` | red, then green, then blue, then rainbow | "skipped": use `sudo` (Connect v1 boards). Wrong colours or nothing: wrong Connect/PCB version in `params.json` (SETUP step 3). |
 | `camera` | "saved /tmp/check_photo.jpg" | Ribbon cable (blue side faces the USB ports on a Pi 4), or the wrong camera model in `/boot/firmware/config.txt`. Look at the photo with `scp robot:/tmp/check_photo.jpg .` |
 | `sound` | three rising notes | See "Sound" in SETUP. With a Bluetooth speaker: is it on? |
 | `wheels` | forward, back, spin right, spin left; all four wheels turn | One wheel backwards: swap that motor's plug around. Grinding on spins: raise `MIN_TURN` in `body.py`. Won't go forward and spins instead: something is within 35 cm, the guard is doing its job. |

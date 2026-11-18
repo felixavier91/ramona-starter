@@ -11,8 +11,8 @@ Every routine goes through this file, so the safety rules live in one place:
         away from straight ahead) -> turn on the spot instead of going forward;
       * reverse only as far as it just drove forward (the sensor can't see behind);
       * while the wheels turn, the head pans at most PAN_DRIVING degrees off centre.
-  - LEDs need root on the Pi 4 / Connect v1 board (rpi_ws281x). Without root they are silently
-    skipped, so every routine still runs without sudo.
+  - LEDs need root on a Connect v1 board (rpi_ws281x). Without root they are silently
+    skipped, so every routine still runs without sudo. (Connect v2 drives them over SPI.)
   - Sound always plays in the normal user's PipeWire session, even when run with sudo.
 
 All the numbers below are starting points measured on one car. Tune them for yours.
@@ -317,9 +317,10 @@ class Robot:
         a = ADC(); v = (a.read_adc(0), a.read_adc(1)); a.close_i2c(); return v
 
     def battery(self):
-        """Battery pack voltage (ADC channel 2 x 3 on PCB v1; 8.4 V full, about 6.6 V empty)."""
+        """Battery pack voltage (8.4 V full, about 6.6 V empty). ADC channel 2 through a divider:
+        x3 on PCB v1, x2 on PCB v2, the same as Freenove's own code."""
         from adc import ADC
-        a = ADC(); v = a.read_adc(2) * 3; a.close_i2c(); return round(v, 2)
+        a = ADC(); v = a.read_adc(2) * (3 if a.pcb_version == 1 else 2); a.close_i2c(); return round(v, 2)
 
     def beep(self, times=1, on=0.12, off=0.1):
         from buzzer import Buzzer

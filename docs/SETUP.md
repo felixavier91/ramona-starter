@@ -115,7 +115,7 @@ The Pi has no speaker. Pick one:
 
 ## Pi 5 note
 
-Untested by us. Freenove supports it (their code drives the LEDs over SPI on a Pi 5 instead of
-`rpi_ws281x`, which is what needs `sudo` on a Pi 4), and `body.py` only uses their classes, so
-the LEDs should work. The ultrasonic code opens `gpiochip 0`; on some Pi 5 systems the header
+Untested by us. Freenove supports it with a Connect v2 board (LEDs over SPI); a Connect v1
+board has no LED support on a Pi 5. See "Board versions" in [PARTS.md](PARTS.md). `body.py`
+only uses Freenove's classes for the LEDs, so they should work. The ultrasonic code opens `gpiochip 0`; on some Pi 5 systems the header
 is `gpiochip 4`. If `check.py distance` errors on a Pi 5, that line in `body.py` is the place.

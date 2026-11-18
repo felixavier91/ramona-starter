@@ -17,6 +17,8 @@ groundwork is here; her personality is not. What you get by starting from it:
 - **Your robot is hard to hurt.** Every wheel and head move goes through one safety layer:
   the head always ramps, the ultrasonic guard is always on, she won't drive forward into
   something or reverse blind, and one file locks the wheels while she sits on a table.
+- **You learn what the robot can do.** [docs/PARTS.md](docs/PARTS.md) explains every sensor
+  and part in plain language: where it is, what it is good for, what it misses.
 - **You can tell what is broken.** [`tests/check.py`](tests/check.py) tests one part at a
   time and says what you should see or hear; [docs/TESTING.md](docs/TESTING.md) lists what
   each failure usually means.
@@ -97,6 +99,7 @@ setup.sh            one-time install on the Pi
 deploy.sh, run.sh   copy the code to the Pi / run a routine from your computer
 CLAUDE.md           notes for Claude Code, if you use it to program her (optional)
 docs/SETUP.md       from a blank SD card to the first test
+docs/PARTS.md       every part of the robot: where it is, what it senses or does, how to use it
 docs/TESTING.md     how to test each part, and what a failure usually means
 docs/LESSONS.md     things that cost us time, so they don't cost you any
 docs/IDEAS.md       what the sister robot grew into, and what it took
