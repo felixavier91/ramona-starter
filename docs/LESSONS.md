@@ -69,5 +69,5 @@ so you know what you are changing if you change it.
 - **One program at a time on the motors.** Two routines at once fight over the same PWM chip.
   If you later add an always-running app (a web remote, say), let it be the one thing that
   launches routines.
-- **Commit before and after every session** (`git init` in this folder). When a change makes
+- **Commit before and after every session.** When a change makes
   her worse, `git diff` tells you what you did.

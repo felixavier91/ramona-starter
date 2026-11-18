@@ -1,15 +1,55 @@
 # Ramona starter kit
 
-A small, plain starting point for a Freenove 4WD Smart Car (Raspberry Pi) robot. It comes out of
-a few weeks of work on a sister robot of the same kit: the reusable parts are here, the
-personality is not. Voice, name, colours, what she does and how she behaves are yours to decide.
+Working starter software for a **Freenove 4WD Smart Car Kit for Raspberry Pi** robot. Fork it,
+name your robot, and start from code that already drives, looks, lights up, talks and tests
+itself, instead of from the kit maker's raw examples.
+
+## Why fork this
+
+This comes out of several weeks of building up a sister robot of the same kit. The reusable
+groundwork is here; her personality is not. What you get by starting from it:
+
+- **You skip the trial and error.** Freenove's code snaps the head hard enough to loosen its
+  screws, its distance sensor class gives junk readings, the wheels grind on slow spins, sound
+  does not play under `sudo`, and a missing speaker hangs a routine forever. All of that is
+  already solved in [`robot/body.py`](robot/body.py), and [docs/LESSONS.md](docs/LESSONS.md)
+  explains each fix.
+- **Your robot is hard to hurt.** Every wheel and head move goes through one safety layer:
+  the head always ramps, the ultrasonic guard is always on, she won't drive forward into
+  something or reverse blind, and one file locks the wheels while she sits on a table.
+- **You can tell what is broken.** [`tests/check.py`](tests/check.py) tests one part at a
+  time and says what you should see or hear; [docs/TESTING.md](docs/TESTING.md) lists what
+  each failure usually means.
+- **Writing a new behaviour is 15 lines.** `r.look()`, `r.nod()`, `r.drive()`, `r.lights()`,
+  `r.play()`, `r.distance()`. Two example routines show the pattern.
+- **It is set up for Claude Code.** [`CLAUDE.md`](CLAUDE.md) tells Claude how to deploy, run,
+  test and stay safe with this robot, so you can describe what you want in plain words and
+  let it write and run the code. Not required; everything works by hand too.
+- **Nothing is decided for you.** No voice, colours, name, phrases or behaviours are baked
+  in. The "My preferences" section of `CLAUDE.md` starts empty.
+
+What it is not: a finished robot app. There is no remote control, no camera streaming, no
+voice commands and no vision here. [docs/IDEAS.md](docs/IDEAS.md) describes how the sister
+robot got each of those and what it took, as projects for you.
+
+## How to use this repo
+
+- **Fork** it if you are happy for your robot's code to be public, or click **Use this
+  template** (green button, top right) to make your own copy that can be **private**. Your
+  copy will collect personal things over time (your speaker's address, your preferences, voice
+  clips), so private is a sensible default.
+- Clone your copy to your computer. That folder is the source of truth for your robot: you
+  edit there, `./deploy.sh` copies it to the Pi, `./run.sh` runs a routine.
+- Rename things freely. Set the robot's name in `robot/config.py` and in `CLAUDE.md`.
+- Commit after each change that works. When a change makes her worse, `git diff` shows what
+  you did.
 
 ## Start here
 
 You do not need to read every file. Do these four things in order.
 
-1. **Unzip this folder on your computer** (Mac or Linux; on Windows use WSL) and keep it
-   somewhere permanent, e.g. `~/ramona`. This folder is where Ramona's code will live.
+1. **Get your own copy** (see above) and clone it on your computer (Mac or Linux; on Windows
+   use WSL), e.g. to `~/ramona`.
 2. **Set up the Pi** by following [docs/SETUP.md](docs/SETUP.md), steps 2 and 3 (step 1 is
    building the car; skip it if she is already assembled). This is the hands-on part, well
    under an hour, and nobody can do it for you. You are done when `ssh robot` logs you into
