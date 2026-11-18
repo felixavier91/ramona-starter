@@ -4,3 +4,6 @@ venv/
 voices/
 audio/fx/
 *.onnx
+photos/
+audio/*/*.wav
+!audio/liberty_ad/8_jingle.wav

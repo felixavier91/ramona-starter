@@ -41,6 +41,22 @@ ssh robot '~/robot/venv/bin/python ~/robot/tools/say.py "Hello, I am Ramona." ~/
 ./run.sh dance 15                   # on the floor, 1.5 m clear
 ```
 
+## The full show (the real end-to-end test)
+
+When every check passes and `dance` works, run the one-minute show. It uses the wheels, head,
+LEDs, speaker, distance sensor, light sensors, battery reading, buzzer and camera in one go,
+so if it runs start to finish, the whole robot works.
+
+```
+ssh robot '~/robot/venv/bin/python ~/robot/tools/make_show.py liberty_ad'    # once: makes the voice clips
+./run.sh liberty_ad                                                          # on the floor, 1.5 m clear all round
+```
+
+She introduces herself, scans left and right, has a pretend fender bender, takes a "claim
+photo" (saved in `~/robot/photos/` on the Pi), dances, and finishes with a sung chant in
+yellow light. It is also the best file to read for how a longer show is put together: lines
+of speech in `speeches/`, each played with a move running alongside it.
+
 Ctrl+C stops a routine cleanly: the `finally: r.shutdown()` in each one stops the wheels and
 centres the head.
 

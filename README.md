@@ -84,10 +84,14 @@ The rest of this page is reference.
 robot/config.py     name, speaker, voice: the only file you must look at
 robot/body.py       the body: head, wheels, LEDs, sound, sensors, with the safety rules built in
 tests/check.py      test one part at a time (battery, distance, head, LEDs, camera, sound, wheels)
-routines/           two short examples to copy from
+routines/           examples to copy from
   hello.py            lights + nod + a sound, no wheels
   dance.py            a set of wheel moves, to a wav or for N seconds
+  liberty_ad.py       a full one-minute show (an insurance-ad skit) that uses every part of
+                      the body: the end-to-end test once the single checks pass
+speeches/           the show's spoken lines as text; {name} becomes your robot's name
 tools/say.py        text -> voice wav (Piper, free, offline)
+tools/make_show.py  render all of a show's lines into voice clips
 tools/make_sounds.py  25 synthesized sound effects and public-domain tunes
 setup.sh            one-time install on the Pi
 deploy.sh, run.sh   copy the code to the Pi / run a routine from your computer
@@ -133,7 +137,11 @@ On 2026-11-18 this exact code ran on the sister robot (Pi 4, Raspberry Pi OS 13,
 PCB v1 board): every check in `check.py` except `wheels`, plus `hello` and `dance` with the
 wheel lock on, `say.py` and `make_sounds.py`.
 
+`routines/liberty_ad.py` is a port of the sister robot's best-tested show. In this form it
+has only been run against fake hardware on a PC (it completes, 38 s, every body part called),
+and its voice clips render. It has not yet run on a real robot.
+
 Not run in this form: the wheels actually turning (the wheel code is copied unchanged from the
-sister robot, where it has driven for weeks), `setup.sh` on a blank Pi, the first-time voice
-download in `say.py`, and anything on a Pi 5 or a v2 board. Start with `check.py wheels` on the
-floor and expect to tune a number or two in `body.py`.
+sister robot, where it has driven for weeks), `setup.sh` on a blank Pi, and anything on a
+Pi 5 or a v2 board. Start with `check.py wheels` on the floor and expect to tune a number or
+two in `body.py`.
