@@ -185,6 +185,11 @@ class Robot:
         self.motor.set_motor_model(left, left, right, right); time.sleep(secs)
         self.stop(); time.sleep(0.05)
 
+    def go(self, left, right):
+        """Start driving and return at once (drive() without the wait). Call stop() when done."""
+        if not self.wheels_locked():
+            self.motor.set_motor_model(left, left, right, right)
+
     def stop(self):
         self.motor.set_motor_model(0, 0, 0, 0)
 

@@ -6,6 +6,7 @@ how hard it was. Everything runs on the Pi itself, with no cloud service.
 
 | Idea | Built from | Effort | Notes |
 |---|---|---|---|
+| **Wander without bumping** | `body.py`: `r.go()`, `r.blocked`, `r.distance()`, the head | an evening or two on the floor | A good first project, and deliberately not in the kit: we never got one we were happy with. Roll forward; when `r.blocked`, stop, look left and right, turn toward the side with more room; back out if cornered. The guard in `body.py` keeps mistakes harmless. The sensor does not see table edges, stairs, thin chair legs or soft things. |
 | **Phone / tablet remote** | Python's built-in `http.server`, one HTML page | a weekend | Buttons that launch routines, a joystick, a volume slider. Add it to the home screen and it feels like an app. Let this server be the only thing that starts routines. |
 | **Live camera in the remote** | `picamera2` MJPEG stream | an evening | Switching to the camera view whenever the wheels move is a nice touch. |
 | **Start at boot** | a `systemd` service | an hour | `Restart=always`, log to a file. |

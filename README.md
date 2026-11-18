@@ -10,9 +10,10 @@ You do not need to read every file. Do these four things in order.
 
 1. **Unzip this folder on your computer** (Mac or Linux; on Windows use WSL) and keep it
    somewhere permanent, e.g. `~/ramona`. This folder is where Ramona's code will live.
-2. **Build the car and set up the Pi** by following [docs/SETUP.md](docs/SETUP.md), steps 1
-   to 3. This is the hands-on part, about an hour, and nobody can do it for you. You are done
-   when `ssh robot` logs you into the Pi.
+2. **Set up the Pi** by following [docs/SETUP.md](docs/SETUP.md), steps 2 and 3 (step 1 is
+   building the car; skip it if she is already assembled). This is the hands-on part, well
+   under an hour, and nobody can do it for you. You are done when `ssh robot` logs you into
+   the Pi.
 3. **Let Claude Code take it from there** (or do step 4 of SETUP and
    [docs/TESTING.md](docs/TESTING.md) by hand if you don't use it). Open a terminal in this
    folder, run `claude`, and paste:
@@ -27,6 +28,11 @@ You do not need to read every file. Do these four things in order.
    song". Tell Claude your preferences as you notice them and ask it to save them in
    `CLAUDE.md`, so they stick.
 
+**No batteries yet?** You can still do steps 1 to 3 with the Pi on a USB-C power supply.
+Tell Claude "no batteries yet, Pi is on USB power" instead of the floor sentence. The camera,
+the speaker, voice clips (`tools/say.py`) and sound effects all work that way. The wheels,
+head and LEDs need the battery pack, so leave those checks for the day the cells arrive.
+
 One rule from day one: **when she is on a table, lock the wheels** (`ssh robot touch
 ~/.robot_no_wheels`), and tell Claude where she is before asking for anything that moves.
 
@@ -38,10 +44,9 @@ The rest of this page is reference.
 robot/config.py     name, speaker, voice: the only file you must look at
 robot/body.py       the body: head, wheels, LEDs, sound, sensors, with the safety rules built in
 tests/check.py      test one part at a time (battery, distance, head, LEDs, camera, sound, wheels)
-routines/           three short examples to copy from
+routines/           two short examples to copy from
   hello.py            lights + nod + a sound, no wheels
   dance.py            a set of wheel moves, to a wav or for N seconds
-  wander.py           drive around without bumping into things
 tools/say.py        text -> voice wav (Piper, free, offline)
 tools/make_sounds.py  25 synthesized sound effects and public-domain tunes
 setup.sh            one-time install on the Pi
@@ -58,7 +63,7 @@ docs/IDEAS.md       what the sister robot grew into, and what it took
 1. Build the car and set up the Pi: [docs/SETUP.md](docs/SETUP.md).
 2. On the Pi: `python3 ~/robot/tests/check.py safe`, then the rest of [docs/TESTING.md](docs/TESTING.md).
 3. From your computer: `./run.sh hello`.
-4. Open `routines/wander.py` (20 lines), change something, run it again.
+4. Open `routines/hello.py` (20 lines), change something, run it again.
 
 ## Writing a routine
 
@@ -72,7 +77,7 @@ try:
     r.lights("rainbow")              # "off", "rainbow", "heartbeat", "alarm", or a colour like body.BLUE
     r.look(body.PAN_SIDE["left"])    # head: always slow and smooth
     r.nod(2)
-    r.drive(1500, 1500, 1.0)         # left power, right power, seconds
+    r.drive(1500, 1500, 1.0)         # left power, right power, seconds (r.go / r.stop to drive without waiting)
     p = r.play(body.path("audio/hi.wav")); p.wait()
     print(r.distance(), r.battery(), r.light())
 finally:
@@ -85,8 +90,8 @@ works without sudo.
 ## What is tested and what is not
 
 On 2026-11-18 this exact code ran on the sister robot (Pi 4, Raspberry Pi OS 13, Connect v1 /
-PCB v1 board): every check in `check.py` except `wheels`, plus `hello`, `dance` and `wander`
-with the wheel lock on, `say.py` and `make_sounds.py`.
+PCB v1 board): every check in `check.py` except `wheels`, plus `hello` and `dance` with the
+wheel lock on, `say.py` and `make_sounds.py`.
 
 Not run in this form: the wheels actually turning (the wheel code is copied unchanged from the
 sister robot, where it has driven for weeks), `setup.sh` on a blank Pi, the first-time voice

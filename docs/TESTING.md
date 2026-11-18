@@ -38,7 +38,6 @@ From your computer, in this folder:
 ./run.sh hello                      # no wheels
 ssh robot '~/robot/venv/bin/python ~/robot/tools/say.py "Hello, I am Ramona." ~/robot/audio/hi.wav'
 ./run.sh hello ~/robot/audio/hi.wav left
-./run.sh wander 20                  # on the floor
 ./run.sh dance 15                   # on the floor, 1.5 m clear
 ```
 
