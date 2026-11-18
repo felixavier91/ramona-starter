@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+venv/
+voices/
+audio/fx/
+*.onnx
