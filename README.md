@@ -4,6 +4,34 @@ A small, plain starting point for a Freenove 4WD Smart Car (Raspberry Pi) robot.
 a few weeks of work on a sister robot of the same kit: the reusable parts are here, the
 personality is not. Voice, name, colours, what she does and how she behaves are yours to decide.
 
+## Start here
+
+You do not need to read every file. Do these four things in order.
+
+1. **Unzip this folder on your computer** (Mac or Linux; on Windows use WSL) and keep it
+   somewhere permanent, e.g. `~/ramona`. This folder is where Ramona's code will live.
+2. **Build the car and set up the Pi** by following [docs/SETUP.md](docs/SETUP.md), steps 1
+   to 3. This is the hands-on part, about an hour, and nobody can do it for you. You are done
+   when `ssh robot` logs you into the Pi.
+3. **Let Claude Code take it from there** (or do step 4 of SETUP and
+   [docs/TESTING.md](docs/TESTING.md) by hand if you don't use it). Open a terminal in this
+   folder, run `claude`, and paste:
+
+   > Read README.md, CLAUDE.md and the docs folder. Ramona is on the floor with 2 m clear
+   > around her. Deploy the kit to the Pi, run setup.sh, then run the hardware checks one at
+   > a time. Before each check tell me what I should see or hear, and wait for me to confirm.
+   > Fix whatever fails.
+
+4. **Make her yours.** Once the checks pass, just ask for things: "make her say hello in my
+   voice of choice", "write a routine where she follows my hand", "make her dance to this
+   song". Tell Claude your preferences as you notice them and ask it to save them in
+   `CLAUDE.md`, so they stick.
+
+One rule from day one: **when she is on a table, lock the wheels** (`ssh robot touch
+~/.robot_no_wheels`), and tell Claude where she is before asking for anything that moves.
+
+The rest of this page is reference.
+
 ## What is in the box
 
 ```
